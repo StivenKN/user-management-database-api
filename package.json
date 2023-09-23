@@ -1,6 +1,6 @@
 {
   "name": "user-management",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Microservicio de administración de usuario con public key",
   "main": "./src/index.js",
   "type": "module",

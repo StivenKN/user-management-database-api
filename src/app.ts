@@ -14,7 +14,7 @@ const options: CorsOptions = {
 
 app.use(cors(options))
 
-app.use(express.json({ limit: '10mb' }))
+app.use(express.json())
 
 const appRoutes: IRouter[] = Object.values(routes)
 
