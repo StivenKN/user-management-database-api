@@ -12,3 +12,10 @@ export const userSchema = Joi.object({
   dbNameSpace: Joi
     .string().required()
 })
+
+export const loginSchema = Joi.object({
+  userEmail: Joi
+    .string().email().required(),
+  userPassword: Joi
+    .string().pattern(passwordPattern).required()
+})
