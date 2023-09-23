@@ -1,1 +1,0 @@
-{"version":3,"file":"user.interface.d.ts","sourceRoot":"","sources":["../../src/interfaces/user.interface.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,SAAS,EAAE,MAAM,0BAA0B,CAAA;AAEzD,UAAU,WAAW;IACnB,WAAW,EAAE,MAAM,CAAA;IACnB,SAAS,EAAE,MAAM,CAAA;CAClB;AAED,MAAM,WAAW,IAAK,SAAQ,WAAW,EAAE,SAAS;IAClD,SAAS,EAAE,MAAM,CAAA;IACjB,YAAY,EAAE,MAAM,CAAA;IACpB,QAAQ,EAAE,MAAM,CAAA;CACjB"}
