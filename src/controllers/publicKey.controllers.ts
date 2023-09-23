@@ -12,9 +12,9 @@ export const createPublicKey = async (_: Request, res: Response): Promise<Respon
     const publicKey = key.exportKey('public').replace('-----BEGIN PUBLIC KEY-----\n', '').replace('\n-----END PUBLIC KEY-----', '').replaceAll('\n', '')
     await saveKeyToDatabase(publicKey)
     return res.status(HttpStatusCode.OK).json({ key: publicKey })
-  } catch (error) {
+  } catch (error: any) {
     console.error(error)
-    return httpErrorCatch(res, error as string ?? 'Error al crear la llave publica')
+    return httpErrorCatch(res, error)
   }
 }
 
@@ -24,7 +24,6 @@ const saveKeyToDatabase = async (publicKey: string): Promise<string | boolean> =
     if (Array.isArray(query) && query.length === 0) throw new APIError('Error al almacenar la llave pública')
     return true
   } catch (error) {
-    console.error(error)
     throw new APIError('Error al almacenar los datos')
   }
 }

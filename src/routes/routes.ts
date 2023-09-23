@@ -1,6 +1,7 @@
 import { type Response, Router, type Request } from 'express'
 import { pool } from '../config/dbconection.js'
 import { keyRoute } from './publicKey.routes.js'
+import { userRoute } from './user.routes.js'
 import { HttpStatusCode } from '../enums/httpStatusCodes.enums.js'
 
 const routes = Router()
@@ -16,4 +17,4 @@ routes.get('/test', async (_req: Request, res: Response): Promise<void> => {
   }
 })
 
-export { routes, keyRoute }
+export { routes, keyRoute, userRoute }

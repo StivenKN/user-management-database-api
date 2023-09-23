@@ -8,6 +8,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "ignorePatterns": ["dist/"],
     "rules": {
         "@typescript-eslint/no-misused-promises": "off"
     }
