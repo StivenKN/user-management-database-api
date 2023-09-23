@@ -1,0 +1,1 @@
+{"version":3,"file":"customErrorClasses.d.ts","sourceRoot":"","sources":["../../src/errors/customErrorClasses.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,mCAAmC,CAAA;AAElE,qBAAa,WAAY,SAAQ,KAAK;IACpC,UAAU,EAAE,MAAM,CAAA;IAClB,MAAM,EAAE,MAAM,CAAA;gBAED,OAAO,EAAE,MAAM,EAAE,UAAU,iBAAqC;CAK9E;AAED,qBAAa,QAAS,SAAQ,WAAW;gBAC1B,OAAO,EAAE,MAAM;CAK7B"}
