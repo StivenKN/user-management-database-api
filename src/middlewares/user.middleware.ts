@@ -4,6 +4,7 @@ import { userSchema } from '../schemas/user.schemas.js'
 import { APIError } from '../errors/customErrorClasses.js'
 import { type user } from '../interfaces/user.interface.js'
 import bcrypt from 'bcrypt'
+import joi from 'joi'
 
 export const checkUserData = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { userEmail, userPassword, userRole, dbNameSpace } = req.body as user
@@ -26,6 +27,17 @@ export const cryptUserPassword = async (req: Request, res: Response, next: NextF
     next()
   } catch (error: any) {
     console.error(error)
+    httpErrorCatch(res, error)
+  }
+}
+
+export const checkDBNameSpace = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const { dbNameSpace } = req.query
+  try {
+    const { error } = await joi.object({ dbNameSpace: joi.string().required() }).validateAsync({ dbNameSpace })
+    if (error !== undefined) throw new APIError('DB name space not valid')
+    next()
+  } catch (error: any) {
     httpErrorCatch(res, error)
   }
 }

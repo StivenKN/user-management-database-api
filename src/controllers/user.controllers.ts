@@ -15,3 +15,14 @@ export const createUserByEmail = async (req: Request, res: Response): Promise<Re
     return httpErrorCatch(res, error)
   }
 }
+
+export const getDBUsers = async (req: Request, res: Response): Promise<Response> => {
+  const { IDKey, dbNameSpace } = req.query
+  try {
+    const [query] = await pool.query('SELECT users.user_email, users.user_password, users.db_namespace, roles.role_name,    COUNT(*) AS total_users FROM users INNER JOIN roles ON users.id_user_role_fk = roles.id_role WHERE users.db_namespace = ? AND id_user_api_key = ? GROUP BY users.user_email, users.user_password, users.db_namespace, roles.role_name', [dbNameSpace, IDKey])
+    if (Array.isArray(query) && query.length === 0) throw new APIError('Error al buscar los usuarios')
+    return res.status(HttpStatusCode.OK).json(query)
+  } catch (error: any) {
+    return httpErrorCatch(res, error)
+  }
+}

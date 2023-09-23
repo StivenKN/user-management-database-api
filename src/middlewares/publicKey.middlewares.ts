@@ -31,6 +31,7 @@ export const getDBIDKey = async (req: Request, _res: Response, next: NextFunctio
     const [query] = await pool.query<RowDataPacket[]>('SELECT id_user_api_key FROM user_api_keys WHERE api_key = ?', [publicKey])
     if (Array.isArray(query) && query.length === 0) throw new APIError('Error al traer el ID la api key.')
     req.body.IDKey = query[0].id_user_api_key
+    req.query.IDKey = query[0].id_user_api_key
     next()
   } catch (error: any) {
     throw new APIError(error)
