@@ -1,12 +1,12 @@
 {
   "name": "user-management",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Microservicio de administración de usuario con public key",
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --env-file .env dist/index.js",
+    "dev": "node --trace-warnings --watch --env-file .env dist/index.js",
     "build": "tsc --watch"
   },
   "keywords": [
@@ -17,9 +17,6 @@
   "author": "ConanGH-S",
   "license": "MIT",
   "dependencies": {
-    "@types/bcrypt": "5.0.0",
-    "@types/jsonwebtoken": "9.0.3",
-    "@types/node-rsa": "1.1.1",
     "bcrypt": "5.1.1",
     "cors": "2.8.5",
     "express": "4.18.2",
@@ -29,9 +26,12 @@
     "node-rsa": "1.1.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "2.8.14",
     "@types/express": "4.17.17",
+    "@types/jsonwebtoken": "^9.0.3",
     "@types/mysql2": "github:types/mysql2",
+    "@types/node-rsa": "^1.1.2",
     "@typescript-eslint/eslint-plugin": "6.7.2",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0",
@@ -39,7 +39,6 @@
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-n": "16.1.0",
     "eslint-plugin-promise": "6.1.1",
-    "nodemon": "3.0.1",
     "typescript": "5.2.2"
   }
 }
