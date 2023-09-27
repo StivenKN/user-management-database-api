@@ -6,6 +6,7 @@ interface dbNameSpace {
 }
 
 export interface user extends dbNameSpace, publicKey {
+  userName: string
   userEmail: string
   userPassword: string
   userRole: number

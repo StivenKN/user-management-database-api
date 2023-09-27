@@ -3,6 +3,8 @@ import Joi from 'joi'
 const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
 
 export const userSchema = Joi.object({
+  userName: Joi
+    .string().allow(null),
   userEmail: Joi
     .string().email().required(),
   userPassword: Joi

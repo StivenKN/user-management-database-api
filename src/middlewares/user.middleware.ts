@@ -9,9 +9,9 @@ import { pool } from '../config/dbconection.js'
 import { type RowDataPacket } from 'mysql2'
 
 export const checkUserData = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const { userEmail, userPassword, userRole, dbNameSpace } = req.body as user
+  const { userName, userEmail, userPassword, userRole, dbNameSpace } = req.body as user
   try {
-    const { error } = await userSchema.validateAsync({ userEmail, userPassword, userRole, dbNameSpace })
+    const { error } = await userSchema.validateAsync({ userName, userEmail, userPassword, userRole, dbNameSpace })
     if (error !== undefined) throw new APIError('Los datos ingresados no son válidos, verifíquelos.')
     next()
   } catch (error: any) {

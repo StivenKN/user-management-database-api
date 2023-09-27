@@ -7,9 +7,9 @@ import { HttpStatusCode } from '../enums/httpStatusCodes.enums.js'
 import jwt from 'jsonwebtoken'
 
 export const createUserByEmail = async (req: Request, res: Response): Promise<Response> => {
-  const { userEmail, dbNameSpace, userPassword, userRole, IDKey } = req.body as user
+  const { userName, userEmail, dbNameSpace, userPassword, userRole, IDKey } = req.body as user
   try {
-    const [query] = await pool.query('INSERT INTO users (id_user_api_key, user_email, user_password, id_user_role_fk, db_namespace) VALUES (?, ?, ?, ?, ?)', [IDKey, userEmail, userPassword, userRole, dbNameSpace])
+    const [query] = await pool.query('INSERT INTO users (id_user_api_key, user_full_name, user_email, user_password, id_user_role_fk, db_namespace) VALUES (?, ?, ?, ?, ?)', [IDKey, userName, userEmail, userPassword, userRole, dbNameSpace])
     if (Array.isArray(query) && query.length === 0) throw new APIError('Ha ocurrido un error al ingresar los datos')
     return res.status(HttpStatusCode.OK).json({ msg: 'User created!' })
   } catch (error: any) {
