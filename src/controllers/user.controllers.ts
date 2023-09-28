@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken'
 export const createUserByEmail = async (req: Request, res: Response): Promise<Response> => {
   const { userName, userEmail, dbNameSpace, userPassword, userRole, IDKey } = req.body as user
   try {
-    const [query] = await pool.query('INSERT INTO users (id_user_api_key, user_full_name, user_email, user_password, id_user_role_fk, db_namespace) VALUES (?, ?, ?, ?, ?)', [IDKey, userName, userEmail, userPassword, userRole, dbNameSpace])
+    const [query] = await pool.query('INSERT INTO users (id_user_api_key, user_full_name, user_email, user_password, id_user_role_fk, db_namespace) VALUES (?, ?, ?, ?, ?, ?)', [IDKey, userName, userEmail, userPassword, userRole, dbNameSpace])
     if (Array.isArray(query) && query.length === 0) throw new APIError('Ha ocurrido un error al ingresar los datos')
     return res.status(HttpStatusCode.OK).json({ msg: 'User created!' })
   } catch (error: any) {
@@ -29,12 +29,12 @@ export const getDBUsers = async (req: Request, res: Response): Promise<Response>
 }
 
 export const generateToken = async (req: Request, res: Response): Promise<Response> => {
-  const { userEmail, DBPayload } = req.body as user
+  const { userEmail, DBPayload, userName } = req.body as user
   const { expirationTime } = req.query
   try {
     const expiresInTime = String(expirationTime)
     const secretKey = process.env.PRIVATE_KEY ?? 'foo'
-    const token = jwt.sign({ payload: { userEmail, DBPayload } }, secretKey, { algorithm: 'HS256', expiresIn: expiresInTime })
+    const token = jwt.sign({ payload: { userEmail, DBPayload, userName } }, secretKey, { algorithm: 'HS256', expiresIn: expiresInTime })
     if (token === undefined) throw new APIError('Error al crear el token')
     return res.status(HttpStatusCode.OK).json(token)
   } catch (error: any) {

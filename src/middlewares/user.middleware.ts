@@ -33,10 +33,12 @@ export const checkLoginData = async (req: Request, res: Response, next: NextFunc
 export const getUserPassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { userEmail } = req.body as user
   try {
-    const [query] = await pool.query<RowDataPacket[]>('SELECT user_password from users where user_email = ?', [userEmail])
+    const [query] = await pool.query<RowDataPacket[]>('SELECT user_password, user_full_name from users where user_email = ?', [userEmail])
     if (Array.isArray(query) && query.length === 0) throw new APIError('User not exist')
     const DBuserPassword = query[0].user_password
+    const userName = query[0].user_full_name
     req.body.DBPayload = DBuserPassword
+    req.body.userName = userName
     next()
   } catch (error: any) {
     httpErrorCatch(res, error)
