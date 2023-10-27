@@ -1,5 +1,6 @@
 import express, { type Request, type Application, type Response, type IRouter } from 'express'
 import cors, { type CorsOptions } from 'cors'
+import cookieParser from 'cookie-parser'
 import * as routes from './routes/routes.js'
 import { HttpStatusCode } from './enums/httpStatusCodes.enums.js'
 
@@ -15,6 +16,8 @@ const options: CorsOptions = {
 app.use(cors(options))
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 const appRoutes: IRouter[] = Object.values(routes)
 

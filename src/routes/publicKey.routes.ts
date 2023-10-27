@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { checkDone, createPublicKey } from '../controllers/publicKey.controllers.js'
-import { checkPublicKey } from '../middlewares/publicKey.middlewares.js'
+import { checkDone, saveKeyToDatabase } from '../controllers/publicKey.controllers.js'
+import { checkPublicKey, createPublicKey } from '../middlewares/publicKey.middlewares.js'
 
 const keyRoute: Router = Router()
 
-keyRoute.get('/check-public-key', checkPublicKey, checkDone)
+keyRoute.get('/public-key', checkPublicKey, checkDone)
 
-keyRoute.post('/create-public-key', createPublicKey)
+keyRoute.post('/public-key', createPublicKey, saveKeyToDatabase)
 
 export { keyRoute }

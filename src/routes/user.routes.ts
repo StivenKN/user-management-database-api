@@ -5,9 +5,9 @@ import { createUserByEmail, generateToken, getDBUsers } from '../controllers/use
 
 const userRoute = Router()
 
-userRoute.get('/show-db-users', checkPublicKey, getDBIDKey, checkDBNameSpace, getDBUsers)
+userRoute.get('/users', checkPublicKey, getDBIDKey, checkDBNameSpace, getDBUsers)
 
-userRoute.post('/register-user/email', checkPublicKey, checkUserData, cryptUserPassword, getDBIDKey, createUserByEmail)
-userRoute.post('/login-user/email', checkPublicKey, checkLoginData, getUserPassword, comparePassword, generateToken)
+userRoute.post('/users/register', checkPublicKey, checkUserData, cryptUserPassword, getDBIDKey, createUserByEmail)
+userRoute.post('/users/login', checkPublicKey, checkLoginData, getUserPassword, comparePassword, generateToken)
 
 export { userRoute }
